@@ -34,13 +34,17 @@ def handle_tasks():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@tasks_blueprint.route('/tasks/<int:id>', methods=['PUT', 'DELETE'])     
+@tasks_blueprint.route('/tasks/<int:id>', methods=['GET','PUT', 'DELETE'])     
 def manage_task(id):
     try:
         task = Task.query.get_or_404(id)
         if not task:
             return jsonify({'error': 'Task with corresponding id not found'}), 404
-        if request.method == 'PUT':
+        
+        if request.method == 'GET':
+            return jsonify({'id': task.id, 'title': task.title, 'description': task.description, 'completed': task.completed}), 200
+        
+        elif request.method == 'PUT':
             data = request.get_json()
             task.title = data.get('title', task.title)
             task.description = data.get('description', task.description)
