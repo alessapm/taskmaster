@@ -1,8 +1,9 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from .controllers.tasks import tasks_blueprint # blueprint to fix mismatched route configuration
 db = SQLAlchemy()
+
+from .controllers.tasks import tasks_blueprint # blueprint to fix mismatched route configuration
 from . import models # move models import to after db initialization
 
 def create_app():

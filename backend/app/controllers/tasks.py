@@ -28,10 +28,10 @@ def handle_tasks():
                 completed = data.get('completed', False)
             )
 
-        db.session.add(new_task)
-        db.session.commit()
+            db.session.add(new_task)
+            db.session.commit()
 
-       return jsonify({'message': 'Task successfully created'}), 201
+            return jsonify({'message': 'Task successfully created'}), 201
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
