@@ -2,9 +2,8 @@ from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from .controllers.tasks import tasks_blueprint # blueprint to fix mismatched route configuration
-from . import models
-
 db = SQLAlchemy()
+from . import models # move models import to after db initialization
 
 def create_app():
     app = Flask(__name__)
@@ -12,13 +11,13 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     CORS(app)
+    
     db.init_app(app)
 
-    with app.app_context():
-        from .controllers.tasks import tasks_blueprint
-        from . import models
-        app.register_blueprint(tasks_blueprint)
+    from .controllers.tasks import tasks_blueprint
+    app.register_blueprint(tasks_blueprint)
 
+    with app.app_context():
         db.create_all()
 
     return app
