@@ -34,24 +34,26 @@ class TestTasksBlueprint(unittest.TestCase):
         self.assertEqual(data['message'], 'Task successfully created')
 
     def test_update_task(self):
-        task = Task(title='Task', description='Description', completed=False)
-        db.session.add(task)
-        db.session.commit()
+        with self.app.app_context():
+            task = Task(title='Task', description='Description', completed=False)
+            db.session.add(task)
+            db.session.commit()
 
-        updated_data = {'title': 'Updated Task', 'description': 'Updated Description', 'completed': True}
-        response = self.client.put('/tasks/{}'.format(task.id), json=updated_data)
-        data = response.get_json()
+            updated_data = {'title': 'Updated Task', 'description': 'Updated Description', 'completed': True}
+            response = self.client.put('/tasks/{}'.format(task.id), json=updated_data)
+            data = response.get_json()
 
-        self.assertEqual(response.status_code, 201)
-        self.assertEqual(data['message'], 'Task successfully updated')
+            self.assertEqual(response.status_code, 201)
+            self.assertEqual(data['message'], 'Task successfully updated')
 
     def test_delete_task(self):
-        task = Task(title='Test Task', description='Test Description', completed=False)
-        db.session.add(task)
-        db.session.commit()
+        with self.app.app_context():
+            task = Task(title='Test Task', description='Test Description', completed=False)
+            db.session.add(task)
+            db.session.commit()
 
-        response = self.client.delete('/tasks/{}'.format(task.id))
-        data = response.get_json()
+            response = self.client.delete('/tasks/{}'.format(task.id))
+            data = response.get_json()
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['message'], 'Task successfully deleted')
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(data['message'], 'Task successfully deleted')
