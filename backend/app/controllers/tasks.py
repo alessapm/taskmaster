@@ -6,7 +6,7 @@ tasks_blueprint = Blueprint('tasks', __name__)
 
 @tasks_blueprint.route('/')
 def root():
-    print("hello !")
+    print("hello")
     return 'hello'
 
 @tasks_blueprint.route('/tasks', methods=['GET', 'POST'])
@@ -19,10 +19,8 @@ def handle_tasks():
         elif request.method == 'POST':
             
             data = request.get_json()
-            print('1!')
-            # if 'title' not in data or not data['title']:
-            #     return jsonify({'error': Title is required}), 400
-            print('data: ', data)
+            if 'title' not in data or not data['title']:
+                return jsonify({'error': Title is required}), 400
             new_task = Task(
                 title = data.get('title'),
                 description = data.get('description'),
@@ -30,15 +28,13 @@ def handle_tasks():
             )
 
             db.session.add(new_task)
-            print('3')
             db.session.commit()
-            print('4')
             return jsonify({'message': 'Task successfully created'}), 201
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@tasks_blueprint.route('/tasks/<int:task_id>', methods=['PUT', 'DELETE'])     
+@tasks_blueprint.route('/tasks/<int:id>', methods=['PUT', 'DELETE'])     
 def manage_task(id):
     try:
         task = Task.query.get_or_404(id)
