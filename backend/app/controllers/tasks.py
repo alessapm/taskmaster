@@ -11,41 +11,55 @@ def root():
 
 @tasks_blueprint.route('/tasks', methods=['GET', 'POST'])
 def handle_tasks():
-    if request.method == 'GET':
-        tasks = Task.query.all()
-        return jsonify([{'id': task.id, 'title': task.title, 'description': task.description, 'completed': task.completed} for task in tasks]), 200
+    try: 
+        if request.method == 'GET':
+            tasks = Task.query.all()
+            return jsonify([{'id': task.id, 'title': task.title, 'description': task.description, 'completed': task.completed} for task in tasks]), 200
    
-   elif request.method == 'POST':
-       data = request.get_json
+        elif request.method == 'POST':
+            data = request.get_json
 
-       new_task = Task(
-           title = data.get('title'),
-           description = data.get('description')
-           completed = data.get('completed', False)
-       )
+            if 'title' not in data or not data['title']:
+                return jsonify({'error': Title is required}), 400
 
-       db.session.add(new_task)
-       db.session.commit()
+            new_task = Task(
+                title = data.get('title'),
+                description = data.get('description'),
+                completed = data.get('completed', False)
+            )
+
+        db.session.add(new_task)
+        db.session.commit()
 
        return jsonify({'message': 'Task successfully created'}), 201
 
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@tasks_blueprint.route('/tasks/<int:task_id>', methods=['PUT', 'DELETE'])     
 def manage_task(id):
-    task = Task.query.get_or_404(id)
+    try:
+        task = Task.query.get_or_404(id)
 
-    if request.method == 'PUT':
-        data = request.get.json()
+        if not task:
+            return jsonify({'error': 'Task with corresponding id not found'}), 404
 
-        task.title = data.get('title', task.title),
-        task.description = data.get('description', task.description)
-        task.completed = data.get('completed', task.completed)
+        if request.method == 'PUT':
+            data = request.get.json()
 
-        db.session.commit()
+            task.title = data.get('title', task.title),
+            task.description = data.get('description', task.description),
+            task.completed = data.get('completed', task.completed)
 
-        return jsonify({'message': 'Task successfully updated'}), 201
+            db.session.commit()
 
-    elif request.method == 'DELETE':
-        db.session.delete(task)
-        db.session.commit()
+            return jsonify({'message': 'Task successfully updated'}), 201
 
-        return jsonify({'message': 'Task successfully deleted'}), 200
+        elif request.method == 'DELETE':
+            db.session.delete(task)
+            db.session.commit()
 
+            return jsonify({'message': 'Task successfully deleted'}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
