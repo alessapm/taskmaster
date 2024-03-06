@@ -29,7 +29,7 @@ def handle_tasks():
 
        return jsonify({'message': 'Task successfully created'}), 201
 
-def edit_task(id):
+def manage_task(id):
     task = Task.query.get_or_404(id)
 
     if request.method == 'PUT':
@@ -42,4 +42,10 @@ def edit_task(id):
         db.session.commit()
 
         return jsonify({'message': 'Task successfully updated'}), 201
+
+    elif request.method == 'DELETE':
+        db.session.delete(task)
+        db.session.commit()
+
+        return jsonify({'message': 'Task successfully deleted'}), 200
 
