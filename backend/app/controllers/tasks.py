@@ -38,15 +38,12 @@ def handle_tasks():
 def manage_task(id):
     try:
         task = Task.query.get_or_404(id)
-
         if not task:
             return jsonify({'error': 'Task with corresponding id not found'}), 404
-
         if request.method == 'PUT':
-            data = request.get.json()
-
-            task.title = data.get('title', task.title),
-            task.description = data.get('description', task.description),
+            data = request.get_json()
+            task.title = data.get('title', task.title)
+            task.description = data.get('description', task.description)
             task.completed = data.get('completed', task.completed)
 
             db.session.commit()
