@@ -1,15 +1,19 @@
-from flask import request, jsonify
-from app import db
+from flask import Blueprint, request, jsonify
 from app.models import Task
-from flask import render_template, redirect, url_for
 
-def configure_routes(app):
-    @app.route('/tasks', methods=['GET', 'POST'])
-    def handle_tasks():
-        print('hello')
-        if request.method == 'GET':
-            tasks = Task.query.all()
-            return jsonify([{'id': task.id, 'title': task.title, 'description': task.description, 'completed': task.completed} for task in tasks]), 200
-        # Add POST logic here
+tasks_blueprint = Blueprint('tasks', __name__)
 
-    # Add more routes here
+@tasks_blueprint.route('/')
+def root():
+    print("hello !")
+    return 'hello'
+
+@tasks_blueprint.route('/tasks', methods=['GET', 'POST'])
+def handle_tasks():
+    print('hello')
+    if request.method == 'GET':
+        tasks = Task.query.all()
+        return jsonify([{'id': task.id, 'title': task.title, 'description': task.description, 'completed': task.completed} for task in tasks]), 200
+    # Add POST logic here
+
+# Add more routes here if needed
