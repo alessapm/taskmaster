@@ -17,11 +17,12 @@ def handle_tasks():
             return jsonify([{'id': task.id, 'title': task.title, 'description': task.description, 'completed': task.completed} for task in tasks]), 200
    
         elif request.method == 'POST':
-            data = request.get_json
-
-            if 'title' not in data or not data['title']:
-                return jsonify({'error': Title is required}), 400
-
+            
+            data = request.get_json()
+            print('1!')
+            # if 'title' not in data or not data['title']:
+            #     return jsonify({'error': Title is required}), 400
+            print('data: ', data)
             new_task = Task(
                 title = data.get('title'),
                 description = data.get('description'),
@@ -29,8 +30,9 @@ def handle_tasks():
             )
 
             db.session.add(new_task)
+            print('3')
             db.session.commit()
-
+            print('4')
             return jsonify({'message': 'Task successfully created'}), 201
 
     except Exception as e:
