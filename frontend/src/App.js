@@ -45,8 +45,19 @@ export default function App() {
     }
   };
 
-  const handleUpdate = async () => {};
-  
+  const handleUpdate = async (id, task) => {
+    try {
+      await updateTask(id, task);
+      console.log('1')
+      const updatedTasks = await getTaskData();
+      console.log('2')
+      setTasks(updatedTasks);
+    }
+    catch (err) {
+      console.log('error updating task: ', err)
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -97,7 +108,7 @@ export default function App() {
         : (
           <ul>
             {tasks.map((task) => (
-              <Task key={task.id} {...task} handleUpdate />
+              <Task key={task.id} {...task} handleUpdate={handleUpdate} />
         ))}
           </ul>
         )
