@@ -1,12 +1,97 @@
+.App-header {
+  margin-bottom: 20px;
+}
+
 .App {
+  padding: 100px;
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
+.add-new {
+  width: 300px;
+  background-color: #282c34;
+  padding: 10px;
+}
+
+.add-new button {
+  margin-top: 10px;
+  background-color: #08ace5;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-new label {
+  display: block;
+  color: white;
+}
+
+.add-new input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: none;
+  background-color: #404a57;
+  color: white;
+  border-radius: 3px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.task-container {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.task-container li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.task-container li p:first-child {
+  font-weight: bold;
+}
+
+.task-container li p:nth-child(2) {
+  font-size: 14px;
+  color: white;
+  padding: 0 10px;
+}
+
+.task-container li input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.task-container li button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #08ace5;
+  font-size: 14px;
+  margin-top: 5px;
+  text-decoration: none;
+}
