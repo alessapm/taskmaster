@@ -1,37 +1,38 @@
-.App-header {
-  margin-bottom: 20px;
-}
-
 .App {
   padding: 100px;
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
+header {
+  margin-bottom: 50px;
+}
+
 .add-new {
+  display: flex;
   width: 300px;
   background-color: #282c34;
   padding: 10px;
 }
 
 .add-new button {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   background-color: #08ace5;
   color: #fff;
   border: none;
-  padding: 8px 15px;
+  padding: 6px 12px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .add-new label {
   display: block;
   color: white;
+  font-size: 16px;
 }
 
 .add-new input {
@@ -53,12 +54,7 @@
   margin-left: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.task-container ul {
-  list-style: none;
-  padding: 0;
+  align-items: flex-start;
 }
 
 .task-container li {
@@ -68,8 +64,10 @@
   width: 100%;
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   border-radius: 5px;
+  background-color: #282c34;
+  margin-top: 10px;
 }
 
 .task-container li p:first-child {
@@ -94,4 +92,9 @@
   font-size: 14px;
   margin-top: 5px;
   text-decoration: none;
+}
+
+.title-description {
+  margin-left: 25px;
+  margin-right: 25px;
 }

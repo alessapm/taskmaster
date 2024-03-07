@@ -35,9 +35,12 @@ export default function Task({id, title, description, completed, handleUpdate, h
         <li key={id}>
           {!isEditing ? (
               <>
+              <input type="checkbox" className='completed' checked={completed} onChange={() => handleUpdate(id, { completed: !completed })} />
+              <div className='title-description'>
               <p>{title}</p>
               <p>{description}</p>
-              <input type="checkbox" checked={completed} onChange={() => handleUpdate(id, { completed: !completed })} />
+              </div>
+              
               <button onClick={onTaskEdit}>Edit</button>
               <button onClick={onDeleteClick}>Delete</button>
             </>
