@@ -12,12 +12,13 @@ export default function App() {
       try {
         const tasksData = await getTaskData();
         setTasks(tasksData);
+        console.log('tasks: ', tasks)
       } catch (err) {
         console.log('error fetching data: ', err);
       }
     }
     getTasks();
-    console.log('tasks: ', tasks)
+   
   }, []);
 
   return (
