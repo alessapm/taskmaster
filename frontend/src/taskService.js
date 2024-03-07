@@ -18,7 +18,7 @@ export const createTask = async (task) => {
 export const updateTask = async (task) => {
     console.log('update task: ', task);
 
-    const response = await axios.put(`${requestUrl}/${id}`, task);
+    const response = await axios.put(`${requestUrl}/${task.id}`, task);
     console.log('put response: ', response);
     return response;
 }

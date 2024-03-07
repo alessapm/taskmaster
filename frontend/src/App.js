@@ -7,7 +7,7 @@ import Task from './Task';
 export default function App() {
   const [ tasks, setTasks ] = useState([]);
   const [ newTask, setNewTask ] = useState({title: '', description: '', completed: false});
-  
+  const [ editedTask, setEditedTask ] = useState({title: '', description: '', completed: false});
   useEffect(() => {
     const getTasks = async () => {
       try {
@@ -45,9 +45,8 @@ export default function App() {
     }
   };
 
-  const handleUpdate = async () => {
-    
-  }
+  const handleUpdate = async () => {};
+  
   return (
     <div className="App">
       <header className="App-header">
