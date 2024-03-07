@@ -1,3 +1,5 @@
+/* App.css */
+
 .App {
   padding: 100px;
   text-align: center;
@@ -12,14 +14,12 @@ header {
 }
 
 .add-new {
-  display: flex;
   width: 300px;
   background-color: #282c34;
   padding: 10px;
 }
 
 .add-new button {
-  /* margin-top: 10px; */
   background-color: #08ace5;
   color: #fff;
   border: none;
@@ -30,7 +30,9 @@ header {
 }
 
 .add-new label {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   color: white;
   font-size: 16px;
 }
@@ -39,6 +41,50 @@ header {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
+  border: none;
+  background-color: #404a57;
+  color: white;
+  border-radius: 3px;
+}
+
+.add-new label input[type="checkbox"] {
+  margin-right: 5px;
+  margin-left: 0;
+}
+
+.edit-mode {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #282c34;
+  margin-top: 10px;
+}
+
+.edit-mode button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #08ace5;
+  font-size: 14px;
+  margin-top: 5px;
+  text-decoration: none;
+}
+
+.edit-mode label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white;
+  font-size: 14px;
+  /* margin-bottom: 10px; */
+}
+
+.edit-mode input {
+  width: 100%; 
+  min-width: 200px;
+  padding: 8px;
   border: none;
   background-color: #404a57;
   color: white;
@@ -97,4 +143,46 @@ header {
 .title-description {
   margin-left: 25px;
   margin-right: 25px;
+}
+
+/* Styles for Edit Mode */
+.task-container li.edit-mode {
+  background-color: #404a57;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.task-container li.edit-mode input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.task-container li.edit-mode label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white;
+  font-size: 14px;
+}
+
+.task-container li.edit-mode input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: none;
+  background-color: #282c34;
+  color: white;
+  border-radius: 3px;
+}
+
+.task-container li.edit-mode button {
+  background-color: #08ace5;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 5px;
+  text-decoration: none;
 }

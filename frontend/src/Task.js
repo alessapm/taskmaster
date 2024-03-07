@@ -45,7 +45,9 @@ export default function Task({id, title, description, completed, handleUpdate, h
               <button onClick={onDeleteClick}>Delete</button>
             </>
           ) : (
-            <>
+            <><div className="edit-mode">
+            
+              <div className="title-description">
               <label>
                 Title:
                 <input
@@ -66,19 +68,11 @@ export default function Task({id, title, description, completed, handleUpdate, h
                   onChange={editChange}
                 />
               </label>
-              <br />
-              <label>
-                Completed:
-                <input
-                  type="checkbox"
-                  name="completed"
-                  checked={editedTask.completed}
-                  onChange={editChange}
-                />
-              </label>
+              </div>
               <br />
               <button onClick={saveEdit}>Save</button>
               <button onClick={cancelEdit}>Cancel</button>
+              </div>
             </>
           )}
         </li>

@@ -101,7 +101,7 @@ export default function App() {
             </label>
             <br />
             <label>
-              Completed:
+              Completed?:
               <input
                 type="checkbox"
                 name="completed"
