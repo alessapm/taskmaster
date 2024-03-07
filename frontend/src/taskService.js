@@ -7,3 +7,7 @@ export const getTaskData = async () => {
     console.log('data: ', response.data);
     return response.data
 }
+
+export const createTask = (task) => {
+    console.log('new task data: ', task)
+}

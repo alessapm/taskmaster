@@ -1,11 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useState, useEffect } from 'react';
-import { getTaskData } from "./taskService";
+import { getTaskData, createTask } from "./taskService";
 
 
 export default function App() {
   const [ tasks, setTasks ] = useState([]);
+  const [ newTask, setNewTask ] = useState({title: '', description: '', completed: false});
   
   useEffect(() => {
     const getTasks = async () => {
@@ -21,6 +22,12 @@ export default function App() {
    
   }, []);
 
+  const handleChange = (e) => {};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -29,14 +36,55 @@ export default function App() {
         </h1>
       </header>
       <div className="main">
+        <div className="add-new">
+          <form onSubmit={handleSubmit}>
+            <label>
+              Title:
+              <input
+                type="text"
+                name="title"
+                value={newTask.title}
+                onChange={hangleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Description:
+              <input
+                type="text"
+                name="description"
+                value={newTask.description}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Completed:
+              <input
+                type="checkbox"
+                name="completed"
+                checked={newTask.completed}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <button type="submit">Add Task</button>
+          </form>
+        </div>
+        <div className="task-container">
         Tasks: 
         {!tasks ? <p>No Current Tasks</p> 
-        : tasks.map((task) => (
+        : (
+          <ul>
+            {tasks.map((task) => (
           <li key={task.id}>
             {task.title}
           </li>
-        ))
+        ))}
+          </ul>
+        )
         }
+        </div>
       </div>
     </div>
   );
