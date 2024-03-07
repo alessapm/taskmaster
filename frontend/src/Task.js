@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Task({id, title, description, completed, handleUpdate}) {
+export default function Task({id, title, description, completed, handleUpdate, handleDelete}) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedTask, setEditedTask] = useState({title, description, completed})
     
@@ -8,7 +8,7 @@ export default function Task({id, title, description, completed, handleUpdate}) 
         setIsEditing(true);
     };
 
-    const handleEditChange = (e) => {
+    const editChange = (e) => {
         const { name, value, type, checked } = e.target;
         const inputValue = type === 'checkbox' ? checked : value;
     
@@ -18,14 +18,18 @@ export default function Task({id, title, description, completed, handleUpdate}) 
         }));
       };
     
-      const handleSaveEdit = () => {
+      const saveEdit = () => {
         handleUpdate(id, editedTask);
         setIsEditing(false);
       };
     
-      const handleCancelEdit = () => {
+      const cancelEdit = () => {
         setIsEditing(false);
       };
+
+      const onDeleteClick = () => {
+        handleDelete(id);
+      }
 
       return (
         <li key={id}>
@@ -35,6 +39,7 @@ export default function Task({id, title, description, completed, handleUpdate}) 
               <p>{description}</p>
               <input type="checkbox" checked={completed} onChange={() => handleUpdate(id, { completed: !completed })} />
               <button onClick={onTaskEdit}>Edit</button>
+              <button onClick={onDeleteClick}>Delete</button>
             </>
           ) : (
             <>
@@ -44,7 +49,7 @@ export default function Task({id, title, description, completed, handleUpdate}) 
                   type="text"
                   name="title"
                   value={editedTask.title}
-                  onChange={handleEditChange}
+                  onChange={editChange}
                   required
                 />
               </label>
@@ -55,7 +60,7 @@ export default function Task({id, title, description, completed, handleUpdate}) 
                   type="text"
                   name="description"
                   value={editedTask.description}
-                  onChange={handleEditChange}
+                  onChange={editChange}
                 />
               </label>
               <br />
@@ -65,12 +70,12 @@ export default function Task({id, title, description, completed, handleUpdate}) 
                   type="checkbox"
                   name="completed"
                   checked={editedTask.completed}
-                  onChange={handleEditChange}
+                  onChange={editChange}
                 />
               </label>
               <br />
-              <button onClick={handleSaveEdit}>Save</button>
-              <button onClick={handleCancelEdit}>Cancel</button>
+              <button onClick={saveEdit}>Save</button>
+              <button onClick={cancelEdit}>Cancel</button>
             </>
           )}
         </li>
