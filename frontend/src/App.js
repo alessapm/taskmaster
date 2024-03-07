@@ -45,7 +45,9 @@ export default function App() {
     }
   };
 
-  
+  const handleUpdate = async () => {
+    
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -96,7 +98,7 @@ export default function App() {
         : (
           <ul>
             {tasks.map((task) => (
-              <Task {...task} />
+              <Task key={task.id} {...task} handleUpdate />
         ))}
           </ul>
         )
