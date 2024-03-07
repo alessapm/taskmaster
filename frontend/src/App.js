@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useState, useEffect } from 'react';
-import { getTaskData, createTask } from "./taskService";
-
+import { getTaskData, createTask, updateTask } from "./taskService";
+import Task from './Task';
 
 export default function App() {
   const [ tasks, setTasks ] = useState([]);
@@ -45,6 +45,7 @@ export default function App() {
     }
   };
 
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -62,6 +63,7 @@ export default function App() {
                 name="title"
                 value={newTask.title}
                 onChange={handleChange}
+                required
               />
             </label>
             <br />
@@ -94,9 +96,7 @@ export default function App() {
         : (
           <ul>
             {tasks.map((task) => (
-          <li key={task.id}>
-            {task.title}
-          </li>
+              <Task {...task} />
         ))}
           </ul>
         )
