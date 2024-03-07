@@ -1,9 +1,11 @@
 import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+// import MockAdapter from 'axios-mock-adapter';
 import { getTaskData, createTask, updateTask } from '../taskService';
 
-const mock = new MockAdapter(axios);
+// const mock = new MockAdapter(axios);
 const requestUrl = 'http://localhost:5000/tasks';
+
+jest.mock('axios');
 
 describe('taskService', () => {
   afterEach(() => {

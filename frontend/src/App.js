@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useState, useEffect } from 'react';
-import { getTaskData, createTask, updateTask } from "./taskService";
+import { getTaskData, createTask, updateTask, deleteTask } from "./taskService";
 import Task from './Task';
 
 export default function App() {
@@ -58,6 +58,17 @@ export default function App() {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await deleteTask(id);
+      const updatedTasks = await getTaskData();
+      setTasks(updatedTasks);
+    } catch (err) {
+      console.log('error deleting task: ', err);
+    }
+  };
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -108,7 +119,7 @@ export default function App() {
         : (
           <ul>
             {tasks.map((task) => (
-              <Task key={task.id} {...task} handleUpdate={handleUpdate} />
+              <Task key={task.id} {...task} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
         ))}
           </ul>
         )
