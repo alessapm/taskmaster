@@ -22,10 +22,27 @@ export default function App() {
    
   }, []);
 
-  const handleChange = (e) => {};
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const inputValue = type === 'checkbox' ? checked : value;
+
+    setNewTask((prevTask) => ({
+      ...prevTask,
+      [name]: inputValue,
+    }));
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    try {
+      await createTask(newTask);
+      const updatedTasks = await getTaskData();
+      setTasks(updatedTasks);
+      setNewTask({ title: '', description: '', completed: false });
+    } catch (err) {
+      console.log('error creating task: ', err);
+    }
   };
 
   return (
@@ -44,7 +61,7 @@ export default function App() {
                 type="text"
                 name="title"
                 value={newTask.title}
-                onChange={hangleChange}
+                onChange={handleChange}
               />
             </label>
             <br />
