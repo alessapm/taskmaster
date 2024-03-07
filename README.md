@@ -1,57 +1,72 @@
-# Northspyre Take-Home Project for React & Flask Web Application
+# Task Master App
 
-## Welcome!
+Task Master is a simple task management application built with React for the frontend and Flask for the backend.
 
-Thank you for participating in our engineering hiring process! This take-home test is designed to assess your practical skills in developing web applications using React and Flask. You are encouraged to use all of your preferred coding tools including and especially ChatGPT or any other AI-based coding assistants you like.
+## Features
 
-## Objective
-Your task is to create a simple web application that features a React frontend and a Flask backend. The application will be a "Task Manager" where users can add, delete, and mark tasks as completed. You are free to modify any code already provided and add any dependencies you need. Creativity is encouraged. The only requirements are that the application should have a React frontend and a Flask backend using the REST architecture, and it should be able to perform the basic CRUD operations for tasks. Please be sure to include instructions for running your application in your submission.
+- Add new tasks with titles, descriptions, and completion status.
+- Edit existing tasks to update their information.
+- Delete tasks that are no longer needed.
+- Clean and user-friendly interface.
 
-## Requirements
+## Technologies Used
 
-Please extend the provided code to meet the following requirements:
-* Display a list of tasks.
-* Add a new task.
-* Delete a task.
-* Mark a task as completed.
+- **Frontend:**
+  - React
+  - Bootstrap
+  - Axios (for HTTP requests)
 
-You are free to modify the code in any way you like, but ensure your final result is a functional web application that meets the above requirements.
+- **Backend:**
+  - Flask
+  - SQLite
 
-#### Frontend
+## Getting Started
 
-* Framework: React
-* Styling: Feel free to use plain CSS for stlying, ideally we recommend using Bootstrap which is already in the dependencies.
+### Prerequisites
 
-#### Backend
+Make sure you have Node.js and npm installed on your machine.
 
-* Framework: Flask
-* Database: Use SQLite for simplicity. The database should have at least one table named tasks with columns for id, title, description, and completed.
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/) (npm is included with Node.js)
 
-## Instructions
+### Frontend Installation
 
-#### Development
-Implement the required features as described above.
+1. Clone the repository to your local machine.
 
-#### Documentation
-Update this README to include instructions on how to set up and run your application.
-Briefly describe your application's architecture and the decisions you made during development.
+   ```bash
+   git clone https://github.com/alessapm/task-master.git
 
-#### Submission
-Please submit your completed test through coderbytes
+2. Navigate to the project directory and install Frontend dependencies
+```bash
+   cd task-master/frontend
+   npm install
 
-#### Evaluation Criteria
+### Backend Installation
 
-* Functionality: The application works as described.
-* Code Quality: Clean, modular, and well-organized code.
-* Design: A user-friendly interface and a sensible API design.
-* Documentation: Clear instructions on setting up and running your application, along with a concise explanation of your architecture and choices.
+cd task-master/backend
+pip install -r requirements.txt
 
-*Bonus Points*
+## Running the App
 
-* Implement authentication for users to manage their tasks.
-* Deploy the application to a cloud service (Heroku, AWS, etc.).
-* Write unit tests for both frontend and backend.
-* Implement additional features that you think would be useful to have in a task manager application.
+Frontend:
+cd task-master/frontend
+Run the development server with npm start
+Visit 'http://localhost:3000' in your browser to view the frontend
 
 
-## Good luck, and we're looking forward to your submission!
+Backend:
+Run the Flask backend 
+cd task-master/backend
+python app.py
+The backend will be accessible at 'http://localhost:5000'
+
+## Testing
+ To run tests for the frontend, use
+ cd task-master/frontend
+ npm test
+
+ To run tests for the backend, use
+ cd task-master/backend
+ python -m unittest discover
+
+ 
