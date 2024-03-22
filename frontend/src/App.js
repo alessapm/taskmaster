@@ -114,7 +114,7 @@ export default function App() {
           </form>
         </div>
         <div className="task-container">
-        {!tasks ? <p>No Current Tasks</p> 
+        {!tasks.length ? <p>No Current Tasks</p> 
         : (
           <ul>
             {tasks.map((task) => (
