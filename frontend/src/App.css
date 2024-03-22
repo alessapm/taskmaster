@@ -48,8 +48,14 @@ header {
 }
 
 .add-new label input[type="checkbox"] {
-  margin-right: 5px;
-  margin-left: 0;
+  margin-top: 5px;
+
+  width: 13px;
+}
+
+.complete {
+  text-decoration: line-through;
+  color: gray;
 }
 
 .edit-mode {
@@ -101,6 +107,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  max-width: 50%;
 }
 
 .task-container li {
@@ -122,7 +129,7 @@ header {
 
 .task-container li p:nth-child(2) {
   font-size: 14px;
-  color: white;
+  /* color: white; */
   padding: 0 10px;
 }
 
@@ -153,10 +160,6 @@ header {
   margin-top: 10px;
 }
 
-.task-container li.edit-mode input[type="checkbox"] {
-  margin-right: 5px;
-}
-
 .task-container li.edit-mode label {
   display: flex;
   flex-direction: column;
@@ -173,6 +176,10 @@ header {
   background-color: #282c34;
   color: white;
   border-radius: 3px;
+}
+
+.task-container li.edit-mode input[type="checkbox"] {
+  margin-right: 5px;
 }
 
 .task-container li.edit-mode button {
